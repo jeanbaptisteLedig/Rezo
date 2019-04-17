@@ -34,6 +34,7 @@ router.post('/register', function(req, res) {
             });
             const newUser = new User({
                 name: req.body.name,
+                lastname: req.body.lastname,
                 email: req.body.email,
                 password: req.body.password,
                 avatar
@@ -82,8 +83,9 @@ router.post('/login', (req, res) => {
                         const payload = {
                             id: user.id,
                             name: user.name,
+                            lastname: user.lastname,
                             avatar: user.avatar
-                        }
+                        };
                         jwt.sign(payload, 'secret', {
                             expiresIn: 3600
                         }, (err, token) => {
@@ -108,6 +110,7 @@ router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) =
     return res.json({
         id: req.user.id,
         name: req.user.name,
+        lastname: req.user.lastname,
         email: req.user.email
     });
 });

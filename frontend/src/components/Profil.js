@@ -36,6 +36,13 @@ class Profil extends Component {
             <div className="content">
                 <Container fluid>
                     <Row>
+                        <Col md={4}>
+                            <UserCard
+                                avatar={this.props.user.avatar}
+                                name={this.props.user.name}
+                                lastname={this.props.user.lastname}
+                            />
+                        </Col>
                         <Col md={8}>
                             <Card
                                 title="Edit Profile"
@@ -144,35 +151,6 @@ class Profil extends Component {
                                         </Button>
                                         <div className="clearfix" />
                                     </form>
-                                }
-                            />
-                        </Col>
-                        <Col md={4}>
-                            <UserCard
-                                bgImage="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
-                                avatar={this.props.user.avatar}
-                                name={this.props.user.name}
-                                description={
-                                    <span>
-                    "Lamborghini Mercy
-                    <br />
-                    Your chick she so thirsty
-                    <br />
-                    I'm in that two seat Lambo"
-                  </span>
-                                }
-                                socials={
-                                    <div>
-                                        <Button simple>
-                                            <i className="fa fa-facebook-square" />
-                                        </Button>
-                                        <Button simple>
-                                            <i className="fa fa-twitter" />
-                                        </Button>
-                                        <Button simple>
-                                            <i className="fa fa-google-plus-square" />
-                                        </Button>
-                                    </div>
                                 }
                             />
                         </Col>
