@@ -1,3 +1,15 @@
-/*.navbar {
-    background-color: ghostwhite !important;
-}*/
+.navbar {
+    background-color: #343a40!important;
+}
+
+.title {
+    color: snow;
+}
+
+.nav-link {
+    color: ghostwhite !important;
+}
+
+.nav-link:hover {
+    color: antiquewhite !important;
+}

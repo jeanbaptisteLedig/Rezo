@@ -45,7 +45,7 @@ class Navbar extends Component {
         );
         return(
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <h4>Rezo</h4>
+                <h4 class="title">Rezo</h4>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     {isAuthenticated ? authLinks : guestLinks}
                 </div>

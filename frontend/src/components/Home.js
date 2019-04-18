@@ -29,7 +29,7 @@ class Home extends Component {
             </div>
         );
         const guestLinks = (
-            <main role="main" className="inner cover">
+            <main role="main" className="cover">
                 <h1 className="cover-heading">Rezo</h1>
                 <p className="lead">Rezo est un réseau social.. d'où son nom ! </p>
             </main>

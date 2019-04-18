@@ -3,12 +3,9 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import {Input} from "reactstrap";
 
 class NewPost extends React.Component {
-    state = {
-        id_user: this.props.user.id,
-        body: ''
-    };
 
     handleInputChange = e => {
         this.setState({
@@ -18,7 +15,7 @@ class NewPost extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        if (this.props.user.id && this.state.body.trim()) {
+        if (this.props.user.id && this.state.content.trim()) {
             this.props.onAddPost(this.state);
             this.handleReset();
         }
@@ -27,9 +24,26 @@ class NewPost extends React.Component {
     handleReset = () => {
         this.setState({
             id_user: this.props.user.id,
-            body: ''
+            content: ''
         });
     };
+
+    toggle = () => {
+        this.setState({
+            openEditor: this.state.content.length > 0 ? true : !this.state.openEditor
+        });
+    };
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            id_user: this.props.user.id,
+            content: '',
+            openEditor: false
+        };
+    }
+
 
     render() {
         return (
@@ -37,15 +51,15 @@ class NewPost extends React.Component {
                 <form onSubmit={ this.handleSubmit }>
                     <h3>Créer une publication</h3>
                     <div className="form-group">
-                        <textarea
-                            cols="1"
-                            rows="3"
-                            placeholder="Que voulez-vous nous raconter aujourd'hui ?"
-                            className="form-control"
-                            name="body"
+                        <Input
+                            name="content"
+                            type={"textarea"}
+                            rows={this.state.openEditor ? 3 : 1}
+                            placeholder={"Que voulez-vous nous raconter aujourd'hui ?"}
+                            validate={{required: true}}
                             onChange={ this.handleInputChange }
-                            value={ this.state.body }>
-                        </textarea>
+                            value={ this.state.content }
+                            onBlur={this.toggle} onFocus={this.toggle}/>
                     </div>
                     <div className="form-group">
                         <button type="submit" className="btn btn-outline-primary">Add Post</button>
