@@ -134,6 +134,7 @@ class Register extends Component {
                             Register User
                         </button>
                     </div>
+                    <p>Vous avez déjà un compte ? <a href="/login">Sign In</a></p>
                 </form>
             </div>
         )

@@ -1,7 +1,6 @@
 // User.js
 
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
@@ -24,12 +23,11 @@ const UserSchema = new Schema({
     avatar: {
         type: String
     },
-    date: {
-        type: Date,
-        default: Date.now
-    }
+    friends: [
+        { type: mongoose.Schema.ObjectId, ref: 'User' }
+    ]
 });
 
-const User = mongoose.model('users', UserSchema);
+const User = mongoose.model('User', UserSchema);
 
 module.exports = User;

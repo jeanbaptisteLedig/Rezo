@@ -35,11 +35,12 @@ class NewPost extends React.Component {
         return (
             <div>
                 <form onSubmit={ this.handleSubmit }>
+                    <h3>Créer une publication</h3>
                     <div className="form-group">
                         <textarea
-                            cols="19"
-                            rows="8"
-                            placeholder="Body"
+                            cols="1"
+                            rows="3"
+                            placeholder="Que voulez-vous nous raconter aujourd'hui ?"
                             className="form-control"
                             name="body"
                             onChange={ this.handleInputChange }
@@ -47,10 +48,7 @@ class NewPost extends React.Component {
                         </textarea>
                     </div>
                     <div className="form-group">
-                        <button type="submit" className="btn btn-primary">Add Post</button>
-                        <button type="button" className="btn btn-warning" onClick={ this.handleReset }>
-                            Reset
-                        </button>
+                        <button type="submit" className="btn btn-outline-primary">Add Post</button>
                     </div>
                 </form>
             </div>

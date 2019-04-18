@@ -41,14 +41,14 @@ class Profil extends Component {
                                                     type: "text",
                                                     bsClass: "form-control",
                                                     placeholder: "First name",
-                                                    defaultValue: "Mike"
+                                                    defaultValue: this.props.user.name
                                                 },
                                                 {
                                                     label: "Last name",
                                                     type: "text",
                                                     bsClass: "form-control",
                                                     placeholder: "Last name",
-                                                    defaultValue: "Andrew"
+                                                    defaultValue: this.props.user.lastname
                                                 }
                                             ]}
                                         />
@@ -59,7 +59,7 @@ class Profil extends Component {
                                                     label: "Email address",
                                                     type: "email",
                                                     bsClass: "form-control",
-                                                    placeholder: "Email"
+                                                    placeholder: this.props.user.email
                                                 }
                                             ]}
                                         />

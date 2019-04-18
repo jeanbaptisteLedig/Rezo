@@ -5,6 +5,14 @@ import { connect } from 'react-redux';
 import Post from '../components/Post';
 import { deletePost, fetchAllPosts } from '../actions';
 
+const styles = {
+    borderBottom: '2px solid #eee',
+    background: 'ghostwhite',
+    margin: '.75rem auto',
+    padding: '.6rem 1rem',
+    borderRadius: '7px'
+};
+
 class PostList extends Component
 {
     componentDidMount () {
@@ -19,10 +27,11 @@ class PostList extends Component
             )
         }
         return (
-            <div>
+            <div style={ styles }>
+                <h6>Les plus récents</h6>
                 {this.props.posts.map(post => {
                     return (
-                        <Post post={ post } onDelete={ this.props.deletePost } key={ post._id } />
+                            <Post post={ post } onDelete={ this.props.deletePost } key={ post._id } />
                     );
                 })}
             </div>

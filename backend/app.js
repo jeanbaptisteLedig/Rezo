@@ -7,7 +7,7 @@ const passport = require('passport');
 const config = require('./db');
 
 const users = require('./routes/user');
-const postroutes = require('./routes/PostRoute');
+const postroutes = require('./routes/postRoute');
 
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
     () => {console.log('Database is connected') },
@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 
 app.use('/api/users', users);
 
-app.use('/posts', postroutes);
+app.use('/api/posts', postroutes);
 
 app.get('/', function(req, res) {
     res.send('hello');

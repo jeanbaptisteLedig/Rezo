@@ -1,11 +1,12 @@
 // Navbar.js
 
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from '../actions/authentication';
-import { withRouter } from 'react-router-dom';
+
+import '../assets/css/Navbar.css';
 
 class Navbar extends Component {
 
@@ -22,26 +23,29 @@ class Navbar extends Component {
                     <img src={user.avatar} alt={user.name} title={user.name}
                          className="rounded-circle"
                          style={{ width: '25px', marginRight: '5px'}} />
-                    {user.name}
+                    {user.name} {user.lastname}
+                </Link>
+                <Link to="/" className="nav-link">
+                    Accueil
                 </Link>
                 <a href="#" className="nav-link" onClick={this.onLogout.bind(this)}>
-                    Logout
+                    Se déconnecter
                 </a>
             </ul>
         );
         const guestLinks = (
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                    <Link className="nav-link" to="/register">Sign Up</Link>
+                    <Link className="nav-link" to="/register">S'inscrire</Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/login">Sign In</Link>
+                    <Link className="nav-link" to="/login">Se connecter</Link>
                 </li>
             </ul>
         );
         return(
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <Link className="navbar-brand" to="/">Rezo</Link>
+                <h4>Rezo</h4>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     {isAuthenticated ? authLinks : guestLinks}
                 </div>

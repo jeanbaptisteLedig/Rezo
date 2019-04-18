@@ -16,6 +16,7 @@ import Profil from './components/Profil';
 import Parameter from './components/Parameter';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 if(localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);
@@ -41,7 +42,7 @@ class App extends Component {
                             <Route exact path="/register" component={ Register } />
                             <Route exact path="/login" component={ Login } />
                             <Route exact path="/profil" component={ Parameter } />
-                            <Route exact path={`/profil/:lastname`} component={ Profil }/>
+                            <Route exact path={`/profil/:id`} component={ Profil }/>
                         </div>
                     </div>
                 </Router>

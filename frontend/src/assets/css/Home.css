@@ -20,3 +20,9 @@
 .card {
     padding: 10px;
 }
+
+.blue {
+    background-color: #1da1f2;
+    overflow: hidden;
+    position: relative;
+}
