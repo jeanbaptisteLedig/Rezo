@@ -13,6 +13,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Home from './components/Home';
 import Profil from './components/Profil';
+import Parameter from './components/Parameter';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -39,7 +40,8 @@ class App extends Component {
                         <div className="container">
                             <Route exact path="/register" component={ Register } />
                             <Route exact path="/login" component={ Login } />
-                            <Route exact path="/profil" component={ Profil } />
+                            <Route exact path="/profil" component={ Parameter } />
+                            <Route exact path={`/profil/:lastname`} component={ Profil }/>
                         </div>
                     </div>
                 </Router>

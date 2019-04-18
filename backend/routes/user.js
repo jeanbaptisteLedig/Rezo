@@ -115,4 +115,12 @@ router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) =
     });
 });
 
+router.get('/:lastname').get(function(req, res) {
+    let lastname = req.params.lastname;
+    User.findById(lastname, function(err, user) {
+        res.json(user);
+        console.log(user);
+    });
+});
+
 module.exports = router;

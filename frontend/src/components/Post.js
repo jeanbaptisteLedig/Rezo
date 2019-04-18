@@ -11,10 +11,10 @@ const styles = {
     borderRadius: '7px'
 };
 
-export default ({ post: { title, body, _id }, onDelete }) => {
+export default ({ post: { id_user, body, _id }, onDelete }) => {
     return (
         <div style={ styles }>
-            <h2>{ title }</h2>
+            <h4>{ id_user }</h4>
             <p>{ body }</p>
             <button className="btn btn-danger" type="button" onClick={() => onDelete(_id)}>
                 Remove

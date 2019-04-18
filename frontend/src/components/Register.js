@@ -18,7 +18,7 @@ class Register extends Component {
             password: '',
             password_confirm: '',
             errors: {}
-        }
+        };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -37,7 +37,7 @@ class Register extends Component {
             email: this.state.email,
             password: this.state.password,
             password_confirm: this.state.password_confirm
-        }
+        };
         this.props.registerUser(user, this.props.history);
     }
 

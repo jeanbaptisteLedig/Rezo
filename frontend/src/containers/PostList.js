@@ -1,29 +1,34 @@
 // PostList.js
 
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Post from '../components/Post';
-import { deletePost } from '../actions';
+import { deletePost, fetchAllPosts } from '../actions';
 
-function PostList({ posts, onDelete }) {
-    if(!posts.length) {
+class PostList extends Component
+{
+    componentDidMount () {
+        this.props.fetchAllPosts();
+    }
+    render() {
+        if(!this.props.posts.length) {
+            return (
+                <div>
+                    No Posts
+                </div>
+            )
+        }
         return (
             <div>
-                No Posts
+                {this.props.posts.map(post => {
+                    return (
+                        <Post post={ post } onDelete={ this.props.deletePost } key={ post._id } />
+                    );
+                })}
             </div>
-        )
+        );
     }
-    return (
-        <div>
-            {posts.map(post => {
-                return (
-                    <Post post={ post } onDelete={ onDelete } key={ post._id } />
-                );
-            })}
-        </div>
-    );
 }
-
 const mapStateToProps = state => {
     return {
         posts: state.posts
@@ -32,9 +37,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onDelete: id => {
-            dispatch(deletePost(id));
-        }
+        deletePost: deletePost(dispatch),
+        fetchAllPosts: fetchAllPosts(dispatch)
     };
 };
 

@@ -1,10 +1,12 @@
 // NewPost.js
 
 import React from 'react';
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 class NewPost extends React.Component {
     state = {
-        title: '',
+        id_user: this.props.user.id,
         body: ''
     };
 
@@ -16,7 +18,7 @@ class NewPost extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        if (this.state.title.trim() && this.state.body.trim()) {
+        if (this.props.user.id && this.state.body.trim()) {
             this.props.onAddPost(this.state);
             this.handleReset();
         }
@@ -24,7 +26,7 @@ class NewPost extends React.Component {
 
     handleReset = () => {
         this.setState({
-            title: '',
+            id_user: this.props.user.id,
             body: ''
         });
     };
@@ -34,25 +36,15 @@ class NewPost extends React.Component {
             <div>
                 <form onSubmit={ this.handleSubmit }>
                     <div className="form-group">
-                        <input
-                            type="text"
-                            placeholder="Title"
+                        <textarea
+                            cols="19"
+                            rows="8"
+                            placeholder="Body"
                             className="form-control"
-                            name="title"
+                            name="body"
                             onChange={ this.handleInputChange }
-                            value={ this.state.title }
-                        />
-                    </div>
-                    <div className="form-group">
-            <textarea
-                cols="19"
-                rows="8"
-                placeholder="Body"
-                className="form-control"
-                name="body"
-                onChange={ this.handleInputChange }
-                value={ this.state.body }>
-            </textarea>
+                            value={ this.state.body }>
+                        </textarea>
                     </div>
                     <div className="form-group">
                         <button type="submit" className="btn btn-primary">Add Post</button>
@@ -66,4 +58,8 @@ class NewPost extends React.Component {
     }
 }
 
-export default NewPost;
+const mapStateToProps = (state) => ({
+    user: state.auth.user
+});
+
+export default withRouter(connect(mapStateToProps)(NewPost));

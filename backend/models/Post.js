@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 // Define collection and schema for Post
 let Post = new Schema({
-    title: {
+    id_user: {
         type: String
     },
     body: {

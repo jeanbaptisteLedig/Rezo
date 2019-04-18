@@ -1,0 +1,22 @@
+@media (min-width: 1200px) {
+    .container {
+        max-width: 940px;
+    }
+}
+
+.container {
+    padding: 50px 20px;
+}
+
+.col-xs-12 {
+    padding: 10px 20px;
+}
+
+.img-responsive {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.card {
+    padding: 10px;
+}

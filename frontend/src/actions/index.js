@@ -5,9 +5,9 @@ import axios from 'axios';
 
 const apiUrl = 'http://localhost:5000/posts';
 
-export const createPost = ({ title, body }) => {
+export const createPost = ({ id_user, body }) => {
     return (dispatch) => {
-        return axios.post(`${apiUrl}/add`, {title, body})
+        return axios.post(`${apiUrl}/add`, {id_user, body})
             .then(response => {
                 dispatch(createPostSuccess(response.data))
             })
@@ -22,7 +22,7 @@ export const createPostSuccess =  (data) => {
         type: ADD_POST,
         payload: {
             _id: data._id,
-            title: data.title,
+            id_user: data.id_user,
             body: data.body
         }
     }
@@ -35,10 +35,10 @@ export const deletePostSuccess = id => {
             id
         }
     }
-}
+};
 
-export const deletePost = id => {
-    return (dispatch) => {
+export const deletePost = dispatch => {
+    return (id) => {
         return axios.get(`${apiUrl}/delete/${id}`)
             .then(response => {
                 dispatch(deletePostSuccess(response.data))
@@ -50,17 +50,18 @@ export const deletePost = id => {
 };
 
 export const fetchPosts = (posts) => {
+    console.log(posts);
     return {
         type: FETCH_POST,
         posts
     }
 };
 
-export const fetchAllPosts = () => {
-    return (dispatch) => {
+export const fetchAllPosts = (dispatch) => {
+    return () => {
         return axios.get(apiUrl)
             .then(response => {
-                dispatch(fetchPosts(response.data))
+                dispatch(fetchPosts(response.data));
             })
             .catch(error => {
                 throw(error);
