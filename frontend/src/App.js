@@ -7,6 +7,7 @@ import store from './store';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authentication';
+import { createHashHistory } from 'history';
 
 import Navbar from './components/Navbar';
 import Register from './components/Register';
@@ -18,6 +19,8 @@ import Parameter from './components/Parameter';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+export const history = createHashHistory();
+
 if(localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);
     const decoded = jwt_decode(localStorage.jwtToken);
@@ -25,7 +28,7 @@ if(localStorage.jwtToken) {
 
     const currentTime = Date.now() / 1000;
     if(decoded.exp < currentTime) {
-        store.dispatch(logoutUser());
+        store.dispatch(logoutUser(history));
         window.location.href = '/login'
     }
 }

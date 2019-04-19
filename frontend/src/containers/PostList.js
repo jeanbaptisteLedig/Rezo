@@ -27,7 +27,7 @@ class PostList extends Component
             )
         }
         return (
-            <div style={ styles }>
+            <div style={ styles } >
                 <h6>Les plus récents</h6>
                 {this.props.posts.map(post => {
                     return (
