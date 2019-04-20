@@ -30,24 +30,24 @@ class Profil extends Component {
                         </Col>
                         <Col md={8}>
                             <Card
-                                title="Edit Profile"
+                                title="Modifier votre profil"
                                 content={
                                     <form>
                                         <FormInputs
                                             ncols={["col-md-6", "col-md-6"]}
                                             proprieties={[
                                                 {
-                                                    label: "First name",
+                                                    label: "Prénom",
                                                     type: "text",
                                                     bsClass: "form-control",
-                                                    placeholder: "First name",
+                                                    placeholder: "Prénom",
                                                     defaultValue: this.props.user.name
                                                 },
                                                 {
-                                                    label: "Last name",
+                                                    label: "Nom",
                                                     type: "text",
                                                     bsClass: "form-control",
-                                                    placeholder: "Last name",
+                                                    placeholder: "Nom",
                                                     defaultValue: this.props.user.lastname
                                                 }
                                             ]}
@@ -56,10 +56,11 @@ class Profil extends Component {
                                             ncols={["col-md-12"]}
                                             proprieties={[
                                                 {
-                                                    label: "Email address",
+                                                    label: "Adresse email",
                                                     type: "email",
                                                     bsClass: "form-control",
-                                                    placeholder: this.props.user.email
+                                                    placeholder: "Adresse email",
+                                                    defaultValue: this.props.user.email
                                                 }
                                             ]}
                                         />
@@ -67,16 +68,16 @@ class Profil extends Component {
                                             ncols={["col-md-6", "col-md-6"]}
                                             proprieties={[
                                                 {
-                                                    label: "Password",
+                                                    label: "Mot de passe",
                                                     type: "password",
                                                     bsClass: "form-control",
-                                                    placeholder: "Password"
+                                                    placeholder: "Mot de passe"
                                                 },
                                                 {
-                                                    label: "Confirm Password",
+                                                    label: "Confirmer votre mot de passe",
                                                     type: "password",
                                                     bsClass: "form-control",
-                                                    placeholder: "Confirm Password"
+                                                    placeholder: "Confirmer votre mot de passe"
                                                 },
                                             ]}
                                         />

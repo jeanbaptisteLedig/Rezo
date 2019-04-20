@@ -84,6 +84,7 @@ router.post('/login', (req, res) => {
                             id: user.id,
                             name: user.name,
                             lastname: user.lastname,
+                            email: user.email,
                             avatar: user.avatar
                         };
                         jwt.sign(payload, 'secret', {
@@ -93,7 +94,7 @@ router.post('/login', (req, res) => {
                             else {
                                 res.json({
                                     success: true,
-                                    token: `Bearer ${token}`
+                                    token: `${token}`
                                 });
                             }
                         });
@@ -111,7 +112,8 @@ router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) =
         id: req.user.id,
         name: req.user.name,
         lastname: req.user.lastname,
-        email: req.user.email
+        email: req.user.email,
+        avatar: user.avatar
     });
 });
 

@@ -11,7 +11,7 @@ let Post = require('../models/Post');
 PostRoute.route('/add').post(function (req, res) {
     let post = new Post(req.body);
     post.save()
-        .then(post => {
+        .then(function(post){
             res.status(200).json(post);
         })
         .catch(err => {
@@ -20,13 +20,28 @@ PostRoute.route('/add').post(function (req, res) {
 });
 
 // Defined get data(index or listing) route
-PostRoute.route('/').get(function (req, res) {
-    Post.find(function (err, posts){
-        if(err){
-            console.log(err);
-        }
+PostRoute.route('/').get(function (req, res, next) {
+    Post.find()
+        .populate('id_user')
+        .then(function(post){
+            res.json(post);
+        }).catch(next);
+});
+
+// Defined update data
+PostRoute.route('/update/:id').post(function (req, res) {
+    Post.findById(req.params.id, function(err, post) {
+        if (!post)
+            return next(new Error('Could not load Document'));
         else {
-            res.json(posts);
+            post.body = req.body;
+
+            post.save().then(post => {
+                res.json('Update complete');
+            })
+                .catch(err => {
+                    res.status(400).send("unable to update the database");
+                });
         }
     });
 });

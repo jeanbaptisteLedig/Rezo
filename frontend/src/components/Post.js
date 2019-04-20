@@ -14,12 +14,12 @@ const styles = {
     borderRadius: '7px'
 };
 
-export default({ post: { id_user, body, _id, date }, onDelete }) => {
+export default({ post: { body, _id, date, id_user : {name, lastname} }, onDelete, onUpdate }) => {
     return (
         <div style={ styles }>
-            <h4 class="username">{ id_user }</h4>
-            <Moment fromNow locale="fr">{date}</Moment>
-            <p>{ body }</p>
+            <h4 className="username">{ name } { lastname }</h4>
+            <Moment fromNow locale="fr">{ date }</Moment>
+            <p className="body">{ body }</p>
             <button className="btn btn-danger btn-sm" type="link" onClick={() => onDelete(_id)}>
                 Remove
             </button>

@@ -1,6 +1,6 @@
 // index.js
 
-import { ADD_POST, DELETE_POST, FETCH_POST } from './types';
+import { ADD_POST, DELETE_POST, FETCH_POST, UPDATE_POST } from './types';
 import axios from 'axios';
 
 const apiUrl = 'http://localhost:5000/api/posts';
@@ -37,6 +37,15 @@ export const deletePostSuccess = id => {
     }
 };
 
+export const updatePostSuccess = id => {
+    return {
+        type: UPDATE_POST,
+        payload: {
+            id
+        }
+    }
+};
+
 export const deletePost = dispatch => {
     return (id) => {
         return axios.get(`${apiUrl}/delete/${id}`)
@@ -47,6 +56,18 @@ export const deletePost = dispatch => {
                 throw(error);
             });
     };
+};
+
+export const updatePost = dispatch => {
+    return (id) => {
+        return axios.post(`${apiUrl}/update/${id}`)
+            .then(response => {
+                dispatch(updatePostSuccess(response.data))
+            })
+            .catch(error => {
+                throw(error);
+            })
+    }
 };
 
 export const fetchPosts = (posts) => {

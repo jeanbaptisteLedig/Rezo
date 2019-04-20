@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Post from '../components/Post';
-import { deletePost, fetchAllPosts } from '../actions';
+import { deletePost, fetchAllPosts, updatePost } from '../actions';
 
 const styles = {
     borderBottom: '2px solid #eee',
@@ -31,7 +31,7 @@ class PostList extends Component
                 <h6>Les plus récents</h6>
                 {this.props.posts.map(post => {
                     return (
-                            <Post post={ post } onDelete={ this.props.deletePost } key={ post._id } />
+                            <Post post={ post } onDelete={ this.props.deletePost } onUpdate={ this.props.updatePost } key={ post._id } />
                     );
                 })}
             </div>
@@ -47,6 +47,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         deletePost: deletePost(dispatch),
+        updatePost: updatePost(dispatch),
         fetchAllPosts: fetchAllPosts(dispatch)
     };
 };

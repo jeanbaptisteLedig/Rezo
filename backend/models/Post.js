@@ -13,8 +13,9 @@ let Post = new Schema({
         default: Date.now
     },
     id_user: {
-        type: String
-    },
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
 });
 
 module.exports = mongoose.model('Post', Post);
