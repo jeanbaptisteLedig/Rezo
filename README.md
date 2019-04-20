@@ -1,7 +1,7 @@
 # Rezo
 Social Network React
 
-# Run frontend from root folder (will listen on localhost:3000 by default)
+# Run frontend
 cd frontend
 npm install
 npm start
