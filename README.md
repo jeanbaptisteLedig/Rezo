@@ -15,4 +15,5 @@ npm install
 nodemon app
 ```
 You can also use node instead of nodemon if you want
+
 EXPRESS_PORT=5000 MONGODB_URI=mongodb://localhost:27017/db nodemon index.js
