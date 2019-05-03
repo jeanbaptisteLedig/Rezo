@@ -2,8 +2,9 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-
+import classnames from 'classnames';
 import {
     Container,
     Row,
@@ -15,8 +16,45 @@ import { FormInputs } from "../components/FormInputs/FormInputs.jsx";
 import { UserCard } from "../components/UserCard/UserCard.jsx";
 import Button from "../components/CustomButton/CustomButton.jsx";
 
+import {updateUser} from '../actions/authentication';
+
 class Profil extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            name: '',
+            lastname: '',
+            email: '',
+            password: '',
+            password_confirm: '',
+            errors: {}
+
+        };
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleInputChange(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        const user = {
+            name: this.state.name,
+            lastname: this.state.lastname,
+            email: this.state.email,
+            password: this.state.password,
+            password_confirm: this.state.password_confirm
+        };
+        updateUser(this.props.user.id, user, this.props.history);
+    }
+
     render() {
+        const { errors } = this.state;
         return (
             <div className="content">
                 <Container fluid>
@@ -32,59 +70,77 @@ class Profil extends Component {
                             <Card
                                 title="Modifier votre profil"
                                 content={
-                                    <form>
-                                        <FormInputs
-                                            ncols={["col-md-6", "col-md-6"]}
-                                            proprieties={[
-                                                {
-                                                    label: "Prénom",
-                                                    type: "text",
-                                                    bsClass: "form-control",
-                                                    placeholder: "Prénom",
-                                                    defaultValue: this.props.user.name
-                                                },
-                                                {
-                                                    label: "Nom",
-                                                    type: "text",
-                                                    bsClass: "form-control",
-                                                    placeholder: "Nom",
-                                                    defaultValue: this.props.user.lastname
-                                                }
-                                            ]}
-                                        />
-                                        <FormInputs
-                                            ncols={["col-md-12"]}
-                                            proprieties={[
-                                                {
-                                                    label: "Adresse email",
-                                                    type: "email",
-                                                    bsClass: "form-control",
-                                                    placeholder: "Adresse email",
-                                                    defaultValue: this.props.user.email
-                                                }
-                                            ]}
-                                        />
-                                        <FormInputs
-                                            ncols={["col-md-6", "col-md-6"]}
-                                            proprieties={[
-                                                {
-                                                    label: "Mot de passe",
-                                                    type: "password",
-                                                    bsClass: "form-control",
-                                                    placeholder: "Mot de passe"
-                                                },
-                                                {
-                                                    label: "Confirmer votre mot de passe",
-                                                    type: "password",
-                                                    bsClass: "form-control",
-                                                    placeholder: "Confirmer votre mot de passe"
-                                                },
-                                            ]}
-                                        />
-                                        <Button bsStyle="info" pullRight fill type="submit">
-                                            Update Profile
-                                        </Button>
-                                        <div className="clearfix" />
+                                    <form onSubmit={ this.handleSubmit }>
+                                        <div className="form-group">
+                                            <input
+                                                type="text"
+                                                placeholder="Name"
+                                                className={classnames('form-control form-control-lg', {
+                                                    'is-invalid': errors.name
+                                                })}
+                                                name="name"
+                                                onChange={ this.handleInputChange }
+                                                value={ this.state.name }
+                                            />
+                                            {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
+                                        </div>
+                                        <div className="form-group">
+                                            <input
+                                                type="text"
+                                                placeholder="Last Name"
+                                                className={classnames('form-control form-control-lg', {
+                                                    'is-invalid': errors.lastname
+                                                })}
+                                                name="lastname"
+                                                onChange={ this.handleInputChange }
+                                                value={ this.state.lastname }
+                                            />
+                                            {errors.lastname && (<div className="invalid-feedback">{errors.lastname}</div>)}
+                                        </div>
+                                        <div className="form-group">
+                                            <input
+                                                type="email"
+                                                placeholder="Email"
+                                                className={classnames('form-control form-control-lg', {
+                                                    'is-invalid': errors.email
+                                                })}
+                                                name="email"
+                                                onChange={ this.handleInputChange }
+                                                value={ this.state.email }
+                                            />
+                                            {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
+                                        </div>
+                                        <div className="form-group">
+                                            <input
+                                                type="password"
+                                                placeholder="Password"
+                                                className={classnames('form-control form-control-lg', {
+                                                    'is-invalid': errors.password
+                                                })}
+                                                name="password"
+                                                onChange={ this.handleInputChange }
+                                                value={ this.state.password }
+                                            />
+                                            {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
+                                        </div>
+                                        <div className="form-group">
+                                            <input
+                                                type="password"
+                                                placeholder="Confirm Password"
+                                                className={classnames('form-control form-control-lg', {
+                                                    'is-invalid': errors.password_confirm
+                                                })}
+                                                name="password_confirm"
+                                                onChange={ this.handleInputChange }
+                                                value={ this.state.password_confirm }
+                                            />
+                                            {errors.password_confirm && (<div className="invalid-feedback">{errors.password_confirm}</div>)}
+                                        </div>
+                                        <div className="form-group">
+                                            <button type="submit" className="btn btn-primary">
+                                                Update
+                                            </button>
+                                        </div>
                                     </form>
                                 }
                             />
@@ -96,8 +152,14 @@ class Profil extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    user: state.auth.user
+Profil.propTypes = {
+    auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    user: state.auth.user,
+    errors: state.errors
 });
 
-export default withRouter(connect(mapStateToProps)(Profil));
+export default withRouter(connect(mapStateToProps,{ updateUser })(Profil))

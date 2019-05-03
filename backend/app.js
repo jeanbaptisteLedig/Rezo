@@ -2,6 +2,7 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
+var cors = require('cors')
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const config = require('./db');
@@ -16,6 +17,7 @@ mongoose.connect(config.DB, { useNewUrlParser: true }).then(
 
 const app = express();
 app.use(passport.initialize());
+app.use(cors());
 require('./passport')(passport);
 
 app.use(bodyParser.urlencoded({ extended: false }));

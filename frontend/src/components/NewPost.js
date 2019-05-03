@@ -26,7 +26,10 @@ class NewPost extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
         if (this.props.user.id && this.state.body.trim()) {
-            this.props.onAddPost(this.state);
+            this.props.onAddPost({
+                body: this.state.body,
+                user: this.props.user
+            });
             this.handleReset();
         }
     };

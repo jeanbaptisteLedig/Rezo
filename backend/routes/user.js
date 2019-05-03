@@ -60,6 +60,43 @@ router.post('/register', function(req, res) {
     });
 });
 
+router.post('/update/:id', function(req, res) {
+    console.log('Im here');
+    const { errors, isValid } = validateRegisterInput(req.body);
+    if(!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    User.findOne({
+        id: req.body.id
+    }).then(user => {
+        const updateUser = {
+            name: req.body.name,
+            lastname: req.body.lastname,
+            email: req.body.email,
+            password: req.body.password,
+        };
+
+        bcrypt.genSalt(10, (err, salt) => {
+            if(err) console.error('There was an error', err);
+            else {
+                bcrypt.hash(updateUser.password, salt, (err, hash) => {
+                    if(err) console.error('There was an error', err);
+                    else {
+                        updateUser.password = hash;
+                        updateUser
+                            .save()
+                            .then(user => {
+                                res.json(user)
+                            });
+                    }
+                });
+            }
+        });
+    });
+
+});
+
 router.post('/login', (req, res) => {
 
     const { errors, isValid } = validateLoginInput(req.body);

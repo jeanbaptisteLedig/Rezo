@@ -21,7 +21,7 @@ PostRoute.route('/add').post(function (req, res) {
 
 // Defined get data(index or listing) route
 PostRoute.route('/').get(function (req, res, next) {
-    Post.find()
+    Post.find().sort({date:-1})
         .populate('id_user')
         .then(function(post){
             res.json(post);

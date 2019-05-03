@@ -4,9 +4,12 @@ import axios from 'axios';
 import { GET_ERRORS, SET_CURRENT_USER } from './types';
 import setAuthToken from '../setAuthToken';
 import jwt_decode from 'jwt-decode';
+import {updatePostSuccess} from "./index";
+
+const apiUrl = 'http://localhost:5000/api/users';
 
 export const registerUser = (user, history) => dispatch => {
-    axios.post('/api/users/register', user)
+    axios.post(`${apiUrl}/register`, user)
         .then(res => history.push('/login'))
         .catch(err => {
             dispatch({
@@ -16,8 +19,19 @@ export const registerUser = (user, history) => dispatch => {
         });
 };
 
+export const updateUser = (id, user, history) => dispatch => {
+    axios.post(`${apiUrl}/update/${id}`, user)
+        .then(res => history.push('/profil'))
+        .catch(err => {
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            });
+        });
+};
+
 export const loginUser = (user) => dispatch => {
-    axios.post('/api/users/login', user)
+    axios.post(`${apiUrl}/login`, user)
         .then(res => {
             const { token } = res.data;
             localStorage.setItem('jwtToken', token);

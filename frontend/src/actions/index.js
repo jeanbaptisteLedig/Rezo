@@ -5,11 +5,11 @@ import axios from 'axios';
 
 const apiUrl = 'http://localhost:5000/api/posts';
 
-export const createPost = ({ id_user, body }) => {
+export const createPost = (post) => {
     return (dispatch) => {
-        return axios.post(`${apiUrl}/add`, {id_user, body})
+        return axios.post(`${apiUrl}/add`, {id_user: post.user.id, body: post.body})
             .then(response => {
-                dispatch(createPostSuccess(response.data))
+                dispatch(createPostSuccess({_id: response._id, id_user: post.user, body: post.body}))
             })
             .catch(error => {
                 throw(error);
@@ -21,7 +21,7 @@ export const createPostSuccess =  (data) => {
     return {
         type: ADD_POST,
         payload: {
-            _id: data._id,
+            id: data._id,
             id_user: data.id_user,
             body: data.body
         }
