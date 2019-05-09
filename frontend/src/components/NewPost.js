@@ -4,6 +4,8 @@ import React from 'react';
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {Input} from "reactstrap";
+import 'emoji-mart/css/emoji-mart.css'
+import { Picker } from 'emoji-mart'
 
 class NewPost extends React.Component {
 
@@ -21,6 +23,26 @@ class NewPost extends React.Component {
         this.setState({
             [e.target.name]: e.target.value
         });
+    };
+
+    addEmoji = (e) => {
+        //console.log(e.unified)
+        if (e.unified.length <= 5){
+            let emojiPic = String.fromCodePoint(`0x${e.unified}`);
+            this.setState({
+                body: this.state.body + emojiPic
+            })
+        }else {
+            let sym = e.unified.split('-');
+            let codesArray = [];
+            sym.forEach(el => codesArray.push('0x' + el));
+            //console.log(codesArray.length)
+            //console.log(codesArray)  // ["0x1f3f3", "0xfe0f"]
+            let emojiPic = String.fromCodePoint(...codesArray);
+            this.setState({
+                body: this.state.body + emojiPic
+            })
+        }
     };
 
     handleSubmit = e => {
@@ -58,7 +80,6 @@ class NewPost extends React.Component {
                         onClick={this.cancel}>
                         Annuler
                     </span>
-
                     <button
                         type="submit"
                         className="float-right btn btn-outline-primary"
@@ -82,7 +103,15 @@ class NewPost extends React.Component {
                             validate={{required: true}}
                             onChange={ this.handleInputChange }
                             value={ this.state.body }
-                            onBlur={this.toggle} onFocus={this.toggle}/>
+                            onBlur={this.toggle} onFocus={this.toggle}
+                        />
+                        <Picker
+                            title='Pick your emoji…'
+                            emoji='point_up'
+                            emojiSize={20}
+                            showPreview={false}
+                            onSelect={this.addEmoji}
+                        />
                     </div>
                     {button}
                 </form>

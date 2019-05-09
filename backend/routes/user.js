@@ -154,11 +154,10 @@ router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) =
     });
 });
 
-router.get('/:id').get(function(req, res) {
+router.get('/:id', (req,res) => {
     let id = req.params.id;
     User.findById(id, function(err, user) {
         res.json(user);
-        console.log(user);
     });
 });
 

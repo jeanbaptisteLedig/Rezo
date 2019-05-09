@@ -2,8 +2,10 @@
 
 import React from 'react';
 import Moment from 'react-moment';
+import Emojione from 'emojione';
 import 'moment/locale/fr';
 import '../assets/css/Post.css';
+Emojione.ascii = true;
 
 const styles = {
     borderBottom: '3px solid #eee',
@@ -15,11 +17,15 @@ const styles = {
 };
 
 export default({ post: { body, _id, date, id_user : {name, lastname} }, onDelete, onUpdate }) => {
+    function createMarkup() {
+        return {__html: Emojione.toImage(body)};
+    }
+
     return (
         <div style={ styles }>
             <h4 className="username">{ name } { lastname }</h4>
             <Moment fromNow locale="fr">{ date }</Moment>
-            <p className="body">{ body }</p>
+            <div dangerouslySetInnerHTML={createMarkup()} className="body" />
             <button className="btn btn-danger btn-sm" type="link" onClick={() => onDelete(_id)}>
                 Remove
             </button>

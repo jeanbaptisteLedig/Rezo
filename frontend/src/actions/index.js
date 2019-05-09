@@ -71,7 +71,6 @@ export const updatePost = dispatch => {
 };
 
 export const fetchPosts = (posts) => {
-    console.log(posts);
     return {
         type: FETCH_POST,
         posts

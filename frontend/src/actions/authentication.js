@@ -1,10 +1,10 @@
 // authentication.js
 
 import axios from 'axios';
-import { GET_ERRORS, SET_CURRENT_USER } from './types';
+import {GET_ERRORS, SET_CURRENT_USER, GET_CURRENT_USER} from './types';
 import setAuthToken from '../setAuthToken';
 import jwt_decode from 'jwt-decode';
-import {updatePostSuccess} from "./index";
+import {deletePostSuccess, fetchPosts, updatePostSuccess} from "./index";
 
 const apiUrl = 'http://localhost:5000/api/users';
 
@@ -59,4 +59,16 @@ export const logoutUser = (history) => dispatch => {
     setAuthToken(false);
     dispatch(setCurrentUser({}));
     history.push('/login');
+};
+
+export const getUser = dispatch => {
+    return (id) => {
+        return axios.get(`${apiUrl}/${id}`)
+            .then(response => {
+                dispatch(deletePostSuccess(response.data))
+            })
+            .catch(error => {
+                throw(error);
+            });
+    };
 };

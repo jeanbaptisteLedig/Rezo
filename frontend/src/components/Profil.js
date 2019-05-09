@@ -10,8 +10,6 @@ import {
     Col
 } from "react-bootstrap";
 
-import { UserCard } from "../components/UserCard/UserCard.jsx";
-
 class Profil extends Component {
     render() {
 
@@ -20,11 +18,7 @@ class Profil extends Component {
                 <Container fluid>
                     <Row>
                         <Col md={4}>
-                            <UserCard
-                                avatar={this.props.user.avatar}
-                                name={this.props.user.name}
-                                lastname={"hello"}
-                            />
+
                         </Col>
                     </Row>
                 </Container>
