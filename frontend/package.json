@@ -10,6 +10,7 @@
     "emoji-mart": "^2.11.0",
     "emojione": "^4.5.0",
     "history": "^4.9.0",
+    "jquery": "^3.4.1",
     "jwt-decode": "^2.2.0",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.25",
@@ -22,7 +23,8 @@
     "react-scripts": "2.1.8",
     "reactstrap": "^8.0.0",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "socket.io-client": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
