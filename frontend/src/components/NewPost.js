@@ -66,18 +66,19 @@ class NewPost extends React.Component {
 
     toggle = () => {
         this.setState({
-            openEditor: this.state.body.length > 0 ? true : !this.state.openEditor
+            openEditor: true
         });
     };
 
     render() {
         let button = null;
+        let picker = null;
         if (this.state.openEditor) {
             button = (
                 <div className={"form-group action-buttons"}>
                     <span
-                        className={"clickable cancel-action"}
-                        onClick={this.cancel}>
+                        className={"clickable btn btn-outline-danger"}
+                        onClick={this.handleReset}>
                         Annuler
                     </span>
                     <button
@@ -88,13 +89,22 @@ class NewPost extends React.Component {
                     </button>
                 </div>
             );
+            picker = (
+                <Picker
+                    title='Pick your emoji…'
+                    emoji='point_up'
+                    emojiSize={20}
+                    showPreview={false}
+                    onSelect={this.addEmoji}
+                />
+            );
         }
 
         return (
             <div>
                 <form onSubmit={ this.handleSubmit }>
                     <h3>Créer une publication</h3>
-                    <div className="form-group">
+                    <div className="form-group" >
                         <Input
                             name="body"
                             type={"textarea"}
@@ -103,16 +113,11 @@ class NewPost extends React.Component {
                             validate={{required: true}}
                             onChange={ this.handleInputChange }
                             value={ this.state.body }
-                            onBlur={this.toggle} onFocus={this.toggle}
+                            onFocus={this.toggle}
                         />
-                        <Picker
-                            title='Pick your emoji…'
-                            emoji='point_up'
-                            emojiSize={20}
-                            showPreview={false}
-                            onSelect={this.addEmoji}
-                        />
+
                     </div>
+                    {picker}
                     {button}
                 </form>
             </div>

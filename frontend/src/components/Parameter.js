@@ -12,10 +12,7 @@ import {
 } from "react-bootstrap";
 
 import { Card } from "../components/Card/Card.jsx";
-import { FormInputs } from "../components/FormInputs/FormInputs.jsx";
 import { UserCard } from "../components/UserCard/UserCard.jsx";
-import Button from "../components/CustomButton/CustomButton.jsx";
-
 import {updateUser} from '../actions/authentication';
 
 class Profil extends Component {
@@ -74,39 +71,39 @@ class Profil extends Component {
                                         <div className="form-group">
                                             <input
                                                 type="text"
-                                                placeholder="Name"
+                                                placeholder={this.props.user.name}
                                                 className={classnames('form-control form-control-lg', {
                                                     'is-invalid': errors.name
                                                 })}
                                                 name="name"
                                                 onChange={ this.handleInputChange }
-                                                value={ this.state.name }
+                                                defaultValue={this.props.user.name}
                                             />
                                             {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
                                         </div>
                                         <div className="form-group">
                                             <input
                                                 type="text"
-                                                placeholder="Last Name"
+                                                placeholder={this.props.user.lastname}
                                                 className={classnames('form-control form-control-lg', {
                                                     'is-invalid': errors.lastname
                                                 })}
                                                 name="lastname"
                                                 onChange={ this.handleInputChange }
-                                                value={ this.state.lastname }
+                                                defaultValue={this.props.user.lastname}
                                             />
                                             {errors.lastname && (<div className="invalid-feedback">{errors.lastname}</div>)}
                                         </div>
                                         <div className="form-group">
                                             <input
                                                 type="email"
-                                                placeholder="Email"
+                                                placeholder={this.props.user.email}
                                                 className={classnames('form-control form-control-lg', {
                                                     'is-invalid': errors.email
                                                 })}
                                                 name="email"
                                                 onChange={ this.handleInputChange }
-                                                value={ this.state.email }
+                                                defaultValue={this.props.user.email}
                                             />
                                             {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
                                         </div>

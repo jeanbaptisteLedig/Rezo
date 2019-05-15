@@ -7,8 +7,10 @@ import { getUser } from '../actions/authentication';
 class GetUser extends Component
 {
     render() {
+        //this.props.getUser(id);
+        console.log(this.props);
         return(
-            <h1> {this.props.user.id} </h1>
+            null
         )
     }
 }

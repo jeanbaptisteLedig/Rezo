@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import Register from "./Register";
 import CreatePost from '../containers/CreatePost';
 import PostList from '../containers/PostList';
-
+import Chat from './Chat';
 import '../assets/css/Home.css';
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
@@ -26,6 +26,7 @@ class Home extends Component {
                 <div className="col-md-12">
                     <PostList />
                 </div>
+                <Chat />
             </div>
         );
         const guestLinks = (

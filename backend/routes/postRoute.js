@@ -54,4 +54,14 @@ PostRoute.route('/delete/:id').get(function (req, res) {
     });
 });
 
+// Defined get data(index or listing) route
+PostRoute.route('/:id').get(function (req, res, next) {
+    let id = req.params.id;
+    Post.find({id_user:id}).sort({date:-1})
+        .populate('id_user')
+        .then(function(post){
+            res.json(post);
+        }).catch(next);
+});
+
 module.exports = PostRoute;
