@@ -1,6 +1,18 @@
 # Rezo
 Social Network React
 
+## Requirement
+node v11.2.0
+npm v6.4.1
+yarn v1.15.2
+mongo v3.4.3
+
+```bash
+git@github.com:jeanbaptisteLedig/Rezo.git
+cd Rezo
+```
+
+
 ## Run frontend
 ```bash
 cd frontend
@@ -14,6 +26,6 @@ cd backend
 npm install
 nodemon app
 ```
-You can also use node instead of nodemon if you want
-
-EXPRESS_PORT=5000 MONGODB_URI=mongodb://localhost:27017/db nodemon index.js
+```bash
+mongod //to start mongodb
+```
