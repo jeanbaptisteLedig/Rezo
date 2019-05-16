@@ -2,10 +2,10 @@
 Social Network React
 
 ## Requirement
-node v11.2.0
-npm v6.4.1
-yarn v1.15.2
-mongo v3.4.3
+- node v11.2.0
+- npm v6.4.1
+- yarn v1.15.2
+- mongo v3.4.3
 
 ```bash
 git@github.com:jeanbaptisteLedig/Rezo.git
